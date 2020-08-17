@@ -1,0 +1,7 @@
+.Main{
+    flex:9;
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+}
