@@ -1,6 +1,7 @@
 .Header{
     flex:1;
-    background-color: #2255E1;
+    background-color: #255EE1;
     color: whitesmoke;
     display: flex;
+    align-items: center;
 }

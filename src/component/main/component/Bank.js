@@ -12,7 +12,7 @@ const formStyles={
 
 const inputStyles={
     border:"none",
-    borderBottom:"2px solid #2255E1",
+    borderBottom:"2px solid #255EE1",
     outline:"none",
 }
 

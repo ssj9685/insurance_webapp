@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const styles = {
     flex:10,
-    backgroundColor:'#2255E1',
+    backgroundColor:'#255EE1',
     textAlign:'center',
 }
 

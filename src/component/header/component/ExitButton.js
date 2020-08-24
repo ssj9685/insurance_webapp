@@ -5,7 +5,7 @@ class ExitButton extends React.Component{
         return(
             <div style={{
                 flex:1,
-                backgroundColor:'#2255E1',
+                backgroundColor:'#255EE1',
                 textAlign:'center',
             }
             }>
