@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './component/App';
+import Insurance from './component/insurance/Insurance';
 import './index.css';
 import { Provider } from 'react-redux';
 import {createStore} from 'redux'
@@ -11,7 +11,7 @@ const store = createStore(reducer);
 const render = ()=>{
     ReactDOM.render(
         <Provider store={store}>
-            <App/>
+            <Insurance/>
         </Provider>,
         document.getElementById('root')
     );        

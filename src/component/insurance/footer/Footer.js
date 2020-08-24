@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css'
-import { nextPage} from '../../action/action';
+import { nextPage} from '../../../action/action';
 import {connect} from 'react-redux';
 
 class Footer extends React.Component{

@@ -9,7 +9,6 @@ class ExitButton extends React.Component{
                 textAlign:'center',
             }
             }>
-                <p>X</p>
             </div>
         );
     }

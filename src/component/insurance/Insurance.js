@@ -4,7 +4,7 @@ import Footer from './footer/Footer';
 import Main from './main/Main';
 import './App.css';
 
-class App extends React.Component{
+class Insurance extends React.Component{
   render(){
     return(
       <form className='App'>
@@ -16,4 +16,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+export default Insurance;
