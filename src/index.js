@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 import {createStore} from 'redux'
 import reducer from './reducer/reducer';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Login from './component/common/Login';
+import Dashboard from './component/dashboard/Dashboard'
+import Panel from './component/panel/Panel'
 
 const store = createStore(reducer);
 
@@ -15,8 +16,8 @@ const render = ()=>{
         <Provider store={store}>
             <BrowserRouter>
                 <Route exact path="/" component={Insurance}/>
-                <Route path="/panel" component={Login}/>
-                <Route path="/dashboard" component={Login}/>
+                <Route path="/panel" component={Panel}/>
+                <Route path="/dashboard" component={Dashboard}/>
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')

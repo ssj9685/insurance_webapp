@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import Main from './main/Main';
+import Header from './component/header/Header';
+import Footer from './component/footer/Footer';
+import Main from './component/main/Main';
 import './App.css';
 
 class Insurance extends React.Component{

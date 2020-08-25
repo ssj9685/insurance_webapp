@@ -1,5 +1,5 @@
 import React from 'react';
-import {setBank, setAccount, setName} from '../../../../action/action';
+import {setBank, setAccount, setName} from 'action/action';
 import {connect} from 'react-redux';
 
 const formStyles={

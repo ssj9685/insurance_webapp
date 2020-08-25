@@ -1,5 +1,5 @@
 import React from 'react';
-import {prevPage} from '../../../../action/action';
+import {prevPage} from 'action/action';
 import {connect} from 'react-redux';
 
 class BackButton extends React.Component{
