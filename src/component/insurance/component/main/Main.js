@@ -31,7 +31,8 @@ class Main extends React.Component{
             case 4:
                 return(
                     <div className='Main'>
-                        <Sign/>
+                        <Sign
+                            sign={this.props.sign}/>
                     </div>
                 );
             case 5:
@@ -54,7 +55,8 @@ let stateToProps = (state) => {
         bank: state.bankReducer.bank,
         account: state.bankReducer.account,
         name: state.bankReducer.name,
-        page: state.pageReducer.page
+        page: state.pageReducer.page,
+        sign: state.signReducer.sign,
     };
 }
 

@@ -7,7 +7,7 @@ class Footer extends React.Component{
     render(){
         return(
             <div className="Footer" onClick={this.props.next}>
-                <p>다음</p>
+                다음
             </div>
         );
     }

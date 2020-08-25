@@ -1,8 +1,7 @@
 import actions from '../action/index';
 import {combineReducers} from 'redux';
-import { SET_SIGN } from '../action/action';
 
-const {SET_NAME,SET_BANK,SET_ACCOUNT, NEXT_PAGE, PREV_PAGE} = actions.action;
+const {SET_NAME,SET_BANK,SET_ACCOUNT,SET_SIGN, NEXT_PAGE, PREV_PAGE} = actions.action;
 
 const bankState = {
     bank:'',

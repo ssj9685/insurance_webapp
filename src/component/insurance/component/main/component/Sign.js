@@ -14,11 +14,24 @@ class Sign extends React.Component{
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
         this.draw = this.draw.bind(this);
     }
 
+    componentDidMount(){
+        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
+        var context = canvas.getContext("2d");
+        var img = new Image();
+        img.src = this.props.sign;
+        img.onload = ()=>{
+            context.drawImage(img,0,0);
+        };
+    }
+    
+
     render(){
         return(
+            <div style={{display:"flex",flexDirection:"column"}}>
             <canvas id="canvas" ref="canvas"
             style={{
                 border:"1px solid",
@@ -48,7 +61,16 @@ class Sign extends React.Component{
                     this.handleMouseUp(nativeEvent);
                 }
             }
+
+            onMouseOut={
+                e => {
+                    let nativeEvent = e.nativeEvent;
+                    this.handleMouseOut(nativeEvent);
+                }
+            }
             />
+            <div style={{color:'gray', textAlign:'center'}}>clean with double tap</div>
+            </div>
         );
     }
     draw(curX, curY) {
@@ -60,6 +82,7 @@ class Sign extends React.Component{
         context.stroke();
     }
     handleMouseDown(event){    
+        event.preventDefault();
         this.setState({
             startX: event.offsetX,
             startY: event.offsetY,
@@ -67,6 +90,7 @@ class Sign extends React.Component{
         });
     }
     handleMouseMove(event){
+        event.preventDefault();
         if(!this.state.isDown) return;
         this.draw(event.offsetX, event.offsetY);
         this.setState({
@@ -75,19 +99,28 @@ class Sign extends React.Component{
         });
     }
 
-    handleMouseUp(){
+    handleMouseUp(event){
+        event.preventDefault();
         const canvas = ReactDOM.findDOMNode(this.refs.canvas);
         this.props.setSign(canvas.toDataURL());
-        console.log(canvas.toDataURL());
         this.setState({
             isDown: false
         })
     }
 
-    handleDoubleClick(){
+    handleMouseOut(event){    
+        event.preventDefault();
+        this.setState({
+            isDown: false
+        });
+    }
+
+    handleDoubleClick(event){
+        event.preventDefault();
         const canvas = ReactDOM.findDOMNode(this.refs.canvas);
         var context = canvas.getContext("2d");
         context.clearRect(0, 0, canvas.width, canvas.height);
+        this.props.setSign('none');
         context.beginPath();
     }
 }
