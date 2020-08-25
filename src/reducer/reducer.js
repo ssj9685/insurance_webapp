@@ -1,5 +1,6 @@
 import actions from '../action/index';
 import {combineReducers} from 'redux';
+import { SET_SIGN } from '../action/action';
 
 const {SET_NAME,SET_BANK,SET_ACCOUNT, NEXT_PAGE, PREV_PAGE} = actions.action;
 
@@ -7,6 +8,14 @@ const bankState = {
     bank:'',
     account:'',
     name:'',
+}
+
+const pageState = {
+    page:1,
+}
+
+const signState = {
+    sign:'',
 }
 
 const bankReducer = (state=bankState, action) => {
@@ -31,21 +40,21 @@ const bankReducer = (state=bankState, action) => {
     }
 }
 
-const pageReducer = (state={value:1},action)=>{
+const pageReducer = (state=pageState,action)=>{
     switch(action.type){
         case NEXT_PAGE:
-            if(state.value<5){
+            if(state.page<5){
                 return {
                     ...state,
-                    value: state.value + 1
+                    page: state.page + 1
                 };
             }
             else{return state;}
         case PREV_PAGE:
-            if(state.value>1){
+            if(state.page>1){
                 return {
                     ...state,
-                    value: state.value - 1
+                    page: state.page - 1
                 };
             }
             else{return state;}
@@ -54,9 +63,22 @@ const pageReducer = (state={value:1},action)=>{
     }
 }
 
+const signReducer = (state=signState,action) => {
+    switch(action.type){
+        case SET_SIGN:
+            return{
+                ...state,
+                sign:action.sign,
+            }
+        default:
+            return state
+    }
+}
+
 const reducers = combineReducers({
     bankReducer,
     pageReducer,
+    signReducer,
 })
 
 export default reducers;

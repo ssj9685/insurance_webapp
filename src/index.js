@@ -21,7 +21,7 @@ const render = ()=>{
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')
-    );        
+    );
 }
 
 store.subscribe(render);

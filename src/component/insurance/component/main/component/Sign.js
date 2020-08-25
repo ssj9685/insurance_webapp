@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {setSign} from 'action/action';
+import {connect} from 'react-redux';
 
 class Sign extends React.Component{
     constructor(props){
@@ -19,7 +21,7 @@ class Sign extends React.Component{
         return(
             <canvas id="canvas" ref="canvas"
             style={{
-                border:"1px solid"
+                border:"1px solid",
             }}
             onDoubleClick={
                 e => {
@@ -74,6 +76,9 @@ class Sign extends React.Component{
     }
 
     handleMouseUp(){
+        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
+        this.props.setSign(canvas.toDataURL());
+        console.log(canvas.toDataURL());
         this.setState({
             isDown: false
         })
@@ -81,11 +86,18 @@ class Sign extends React.Component{
 
     handleDoubleClick(){
         const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        console.log(canvas.toDataURL())
         var context = canvas.getContext("2d");
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
     }
 }
+
+let dispatchToProps = (dispatch) => {
+    return {
+        setSign: sign => dispatch(setSign(sign)),
+    }
+}
+
+Sign = connect(undefined, dispatchToProps)(Sign);
 
 export default Sign;

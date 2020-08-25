@@ -4,9 +4,7 @@ import Login from 'component/common/Login.js'
 class Panel extends React.Component{
     render(){
         return(
-            <>
             <Login/>
-            </>
         )
     }
 }

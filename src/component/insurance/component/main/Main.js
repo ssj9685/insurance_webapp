@@ -5,7 +5,7 @@ import {Bank, Info, Agree, Sign, Complete} from './component/Component';
 
 class Main extends React.Component{
     render(){
-        switch(this.props.value){
+        switch(this.props.page){
             case 1:
                 return(
                     <div className='Main'>
@@ -43,7 +43,7 @@ class Main extends React.Component{
             default:
                 return(
                     <div className='Main'>
-                        <Bank/>
+                        Main
                     </div>
                 );
         }
@@ -54,7 +54,7 @@ let stateToProps = (state) => {
         bank: state.bankReducer.bank,
         account: state.bankReducer.account,
         name: state.bankReducer.name,
-        value: state.pageReducer.value
+        page: state.pageReducer.page
     };
 }
 

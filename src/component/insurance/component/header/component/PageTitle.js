@@ -17,7 +17,7 @@ const Title = (props)=>{
 
 class PageTitle extends React.Component{
     render(){
-        switch(this.props.value){
+        switch(this.props.page){
             case 1:
                 return <Title title='보험금 지급 계좌'/>
             case 2:
@@ -36,7 +36,7 @@ class PageTitle extends React.Component{
 
 let stateToProps = (state) => {
     return {
-        value: state.pageReducer.value
+        page: state.pageReducer.page
     };
 }
 
