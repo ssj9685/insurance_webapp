@@ -11,7 +11,7 @@ class BackButton extends React.Component{
                 textAlign:'center',
             }
             } onClick={this.props.prev}>
-                <p>back</p>
+                <p>&#8592;</p>
             </div>
         );
     }

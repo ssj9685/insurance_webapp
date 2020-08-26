@@ -31,8 +31,7 @@ class Main extends React.Component{
             case 4:
                 return(
                     <div className='Main'>
-                        <Sign
-                            sign={this.props.sign}/>
+                        <Sign sign={this.props.sign}/>
                     </div>
                 );
             case 5:
