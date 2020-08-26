@@ -1,4 +1,6 @@
 import React from 'react';
+import { agreeCollect, agreeLookUp } from 'action/action';
+import {connect} from 'react-redux';
 
 class Agree extends React.Component{
     render(){
@@ -44,7 +46,12 @@ class Agree extends React.Component{
                         />
                 </details>
                 <div style={{textAlign:"right"}}>
-                    동의 <input value="agree" type="checkbox"/>
+                    동의
+                    <input
+                        type="checkbox"
+                        checked={this.props.collect}
+                        onChange={e=>this.props.agreeCollect(e.target.checked)}
+                    />
                 </div>
 
                 <details style={{margin:"2em",}}>
@@ -70,12 +77,26 @@ class Agree extends React.Component{
                 </details>
 
                 <div style={{textAlign:"right"}}>
-                    동의 <input value="agree" type="checkbox"/>
+                    동의 
+                    <input 
+                        type="checkbox"
+                        checked={this.props.lookUp}
+                        onChange={e=>this.props.agreeLookUp(e.target.checked)}
+                    />
                 </div>
 
             </div>
         );
     }
 }
+
+let dispatchToProps = (dispatch) => {
+    return {
+        agreeCollect: collect => dispatch(agreeCollect(collect)),
+        agreeLookUp: lookUp => dispatch(agreeLookUp(lookUp))
+    }
+}
+
+Agree = connect(undefined, dispatchToProps)(Agree);
 
 export default Agree;

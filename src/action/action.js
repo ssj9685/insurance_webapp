@@ -5,6 +5,8 @@ const SET_NAME = 'SET_NAME';
 const NEXT_PAGE = 'NEXT_PAGE';
 const PREV_PAGE = 'PREVIOUS_PAGE';
 const SET_SIGN = 'SET_SIGN';
+const AGREE_COLLECT = 'AGREE_COLLECT';
+const AGREE_LOOKUP = 'AGREE_LOOKUP';
 
 // action creators
 const setBank = bank => {
@@ -23,6 +25,14 @@ const setSign = sign => {
 	return { type: SET_SIGN, sign};
 }
 
+const agreeCollect = agree => {
+	return { type:AGREE_COLLECT,agree}
+}
+
+const agreeLookUp = agree => {
+	return { type:AGREE_LOOKUP,agree}
+}
+
 function nextPage(){
 	return { type: NEXT_PAGE}
 }
@@ -38,10 +48,14 @@ export  {
 	SET_SIGN,
 	NEXT_PAGE,
 	PREV_PAGE,
+	AGREE_COLLECT,
+	AGREE_LOOKUP,
 	setBank,
 	setAccount,
 	setName,
 	setSign,
 	nextPage,
 	prevPage,
+	agreeCollect,
+	agreeLookUp,
 }

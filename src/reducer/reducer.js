@@ -1,7 +1,16 @@
 import actions from '../action/index';
 import {combineReducers} from 'redux';
 
-const {SET_NAME,SET_BANK,SET_ACCOUNT,SET_SIGN, NEXT_PAGE, PREV_PAGE} = actions.action;
+const {
+        SET_NAME,
+        SET_BANK,
+        SET_ACCOUNT,
+        SET_SIGN,
+        NEXT_PAGE,
+        PREV_PAGE,
+        AGREE_COLLECT,
+        AGREE_LOOKUP,
+    } = actions.action;
 
 const bankState = {
     bank:'',
@@ -15,6 +24,11 @@ const pageState = {
 
 const signState = {
     sign:'',
+}
+
+const agreeState = {
+    collect:false,
+    lookUp:false,
 }
 
 const bankReducer = (state=bankState, action) => {
@@ -74,10 +88,28 @@ const signReducer = (state=signState,action) => {
     }
 }
 
+const agreeReducer = (state=agreeState,action) => {
+    switch(action.type){
+        case AGREE_COLLECT:
+            return{
+                ...state,
+                collect:action.agree,
+            }
+        case AGREE_LOOKUP:
+            return{
+                ...state,
+                lookUp:action.agree
+            }
+        default:
+            return state
+    }
+}
+
 const reducers = combineReducers({
     bankReducer,
     pageReducer,
     signReducer,
+    agreeReducer,
 })
 
 export default reducers;

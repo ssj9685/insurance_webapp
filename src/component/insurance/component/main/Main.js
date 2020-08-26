@@ -25,7 +25,10 @@ class Main extends React.Component{
             case 3:
                 return(
                     <div className='Main'>
-                        <Agree/>
+                        <Agree
+                            collect={this.props.collect}
+                            lookUp={this.props.lookUp}
+                        />
                     </div>
                 );
             case 4:
@@ -56,6 +59,8 @@ let stateToProps = (state) => {
         name: state.bankReducer.name,
         page: state.pageReducer.page,
         sign: state.signReducer.sign,
+        collect: state.agreeReducer.collect,
+        lookUp: state.agreeReducer.lookUp,
     };
 }
 
