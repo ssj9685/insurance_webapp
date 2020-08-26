@@ -69,7 +69,7 @@ class Sign extends React.Component{
                 }
             }
             />
-            <div style={{color:'gray', textAlign:'center'}}>clean with double tap</div>
+            <div style={{margin:'2em',fontFamily:'helvetica',color:'gray', textAlign:'center'}}>탭을 두번하면 지워집니다</div>
             </div>
         );
     }
