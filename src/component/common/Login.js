@@ -37,9 +37,7 @@ class Login extends React.Component{
         for (let [key, prop] of fd) {
           data[key] = prop;
         }
-
-        console.log(JSON.stringify(data));
-        fetch('', {
+        fetch('http://localhost:9060/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
