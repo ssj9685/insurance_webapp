@@ -33,7 +33,7 @@ class Sign extends React.Component{
             <div style={{display:"flex",flexDirection:"column"}}>
             <canvas ref={this.canvas}
             style={{
-                border:"1px solid",
+                border:"2px solid #255EE1",
             }}
             onDoubleClick={
                 e => {
