@@ -1,5 +1,5 @@
 import React from 'react';
-//import Login from 'component/common/Login'
+//import Signin from 'component/common/Signin'
 import Camera from './component/Camera'
 
 class Dashboard extends React.Component{

@@ -25,7 +25,7 @@ const submitStyle={
     border:"none"
 }
 
-class Login extends React.Component{
+class Signin extends React.Component{
     constructor(props){
         super(props)
         this.form = React.createRef();
@@ -62,4 +62,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default Signin;

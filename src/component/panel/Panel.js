@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from 'component/common/Login.js'
+import Signin from 'component/common/Signin'
 
 class Panel extends React.Component{
     render(){
         return(
-            <Login/>
+            <Signin/>
         )
     }
 }

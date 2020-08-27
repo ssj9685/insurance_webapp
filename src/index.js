@@ -8,6 +8,7 @@ import reducer from './reducer/reducer';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Dashboard from './component/dashboard/Dashboard'
 import Panel from './component/panel/Panel'
+import NotFound from './component/common/NotFound';
 
 const store = createStore(reducer);
 
@@ -18,6 +19,7 @@ const render = ()=>{
                 <Route exact path="/" render={()=><Insurance/>}/>
                 <Route path="/panel" render={()=><Panel/>}/>
                 <Route path="/dashboard" render={()=><Dashboard/>}/>
+                <Route render={()=><NotFound/>}/>
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')
