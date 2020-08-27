@@ -26,13 +26,39 @@ const submitStyle={
 }
 
 class Login extends React.Component{
+    constructor(props){
+        super(props)
+        this.form = React.createRef();
+        this.submitInfo = this.submitInfo.bind(this);
+    }
+    submitInfo(){
+        let fd = new FormData(this.form.current);
+        let data = {};
+        for (let [key, prop] of fd) {
+          data[key] = prop;
+        }
+
+        console.log(JSON.stringify(data));
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(data => data.json())
+        .then(data =>  { console.log(data) }) 
+        .catch((err) => {
+            console.error(err);
+        })
+    }
     render(){
         return(
-            <form action="" method="POST" style={formStyle}>
+            <form ref={this.form} action="" method="POST" style={formStyle}>
                 <h1 style={{color:"white"}}>Sign-in</h1>
                 <input style={inputStyle} name="id" placeholder="ID"/>
                 <input style={inputStyle} name="pw" placeholder="PW"/>
-                <input style={submitStyle} value="Sign in" type="submit"/>
+                <input style={submitStyle} type="button" value="sign-in" onClick={this.submitInfo}/>
             </form>
         )
     }

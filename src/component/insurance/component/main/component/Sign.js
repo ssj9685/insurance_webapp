@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {setSign} from 'action/action';
 import {connect} from 'react-redux';
 
@@ -11,6 +10,7 @@ class Sign extends React.Component{
             startY: 0,
             isDown: false,
         }
+        this.canvas = React.createRef();
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
@@ -19,8 +19,7 @@ class Sign extends React.Component{
     }
 
     componentDidMount(){
-        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        var context = canvas.getContext("2d");
+        var context = this.canvas.current.getContext("2d");
         var img = new Image();
         img.src = this.props.sign;
         img.onload = ()=>{
@@ -32,7 +31,7 @@ class Sign extends React.Component{
     render(){
         return(
             <div style={{display:"flex",flexDirection:"column"}}>
-            <canvas id="canvas" ref="canvas"
+            <canvas ref={this.canvas}
             style={{
                 border:"1px solid",
             }}
@@ -74,8 +73,7 @@ class Sign extends React.Component{
         );
     }
     draw(curX, curY) {
-        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        var context = canvas.getContext("2d");
+        var context = this.canvas.current.getContext("2d");
         context.beginPath();
         context.moveTo(this.state.startX, this.state.startY);
         context.lineTo(curX, curY);
@@ -101,8 +99,7 @@ class Sign extends React.Component{
 
     handleMouseUp(event){
         event.preventDefault();
-        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        this.props.setSign(canvas.toDataURL());
+        this.props.setSign(this.canvas.current.toDataURL());
         this.setState({
             isDown: false
         })
@@ -117,9 +114,8 @@ class Sign extends React.Component{
 
     handleDoubleClick(event){
         event.preventDefault();
-        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        var context = canvas.getContext("2d");
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        var context = this.canvas.current.getContext("2d");
+        context.clearRect(0, 0, this.canvas.current.width, this.canvas.current.height);
         this.props.setSign('none');
         context.beginPath();
     }

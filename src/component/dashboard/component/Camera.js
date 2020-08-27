@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class Camera extends React.Component{
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this);
         this.videoTag = React.createRef()
+        this.canvas = React.createRef()
     }
     componentDidMount(){
         navigator.mediaDevices.getUserMedia({video: true})
@@ -28,7 +28,7 @@ class Camera extends React.Component{
             </button>
 
             <canvas
-                ref="canvas"
+                ref={this.canvas}
                 width='640'
                 height='480'
             />
@@ -38,8 +38,7 @@ class Camera extends React.Component{
     handleClick(event){
         event.preventDefault();
 
-        const canvas = ReactDOM.findDOMNode(this.refs.canvas);
-        var context = canvas.getContext('2d');
+        var context = this.canvas.current.getContext('2d');
 
         const track = this.videoTag.current.srcObject.getVideoTracks()[0];
         let imageCapture = new ImageCapture(track);
@@ -47,7 +46,10 @@ class Camera extends React.Component{
         imageCapture.takePhoto()
         .then(blob => createImageBitmap(blob))
         .then(imageBitmap => {
-            context.drawImage(imageBitmap,0,0,canvas.width,canvas.height);
+            context.drawImage(imageBitmap,0,0,this.canvas.current.width,this.canvas.current.height);
+
+            //to send png file
+            //console.log(canvas.toDataURL())
         })
     };
 }
