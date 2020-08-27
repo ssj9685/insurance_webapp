@@ -15,9 +15,9 @@ const render = ()=>{
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-                <Route exact path="/" component={Insurance}/>
-                <Route path="/panel" component={Panel}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route exact path="/" render={()=><Insurance/>}/>
+                <Route path="/panel" render={()=><Panel/>}/>
+                <Route path="/dashboard" render={()=><Dashboard/>}/>
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')

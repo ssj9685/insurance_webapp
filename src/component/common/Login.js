@@ -46,7 +46,7 @@ class Login extends React.Component{
             },
             body: JSON.stringify(data)
         })
-        .then(data => data.json())
+        .then(data => data.text())
         .then(data =>  { console.log(data) }) 
         .catch((err) => {
             console.error(err);
