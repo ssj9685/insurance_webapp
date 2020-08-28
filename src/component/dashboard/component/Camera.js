@@ -9,12 +9,18 @@ class Camera extends React.Component{
         this.canvas = React.createRef()
     }
     componentDidMount(){
-        navigator.mediaDevices.getUserMedia({video: true})
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+                facingMode: 'enviroment'
+            }})
         .then(stream => this.videoTag.current.srcObject = stream)
     }
     render(){
         return(
             <div style={{
+                width:'100%',
+                height:'100%',
                 display:'flex',
                 flexDirection:'column',
                 justifyContent:'center',
@@ -22,7 +28,7 @@ class Camera extends React.Component{
                 }}>
             <div>처방전을 비춰주세요</div>
             <video ref={this.videoTag} autoPlay/>
-            <canvas ref={this.canvas} width="0" height="0"/>
+            <canvas style={{display:'none'}} ref={this.canvas} width="0" height="0"/>
             <div>
                 <input type="button" value="Capture" onClick={this.handleClick}/>
                 <input type="button" value="reset" onClick={this.handleReset}/>
@@ -31,10 +37,14 @@ class Camera extends React.Component{
         )
     }
     handleClick(){
+        //this.canvas.current.width = this.videoTag.current.videoWidth
+        //this.canvas.current.height = this.videoTag.current.videoHeight
+
         this.canvas.current.width = this.videoTag.current.videoWidth
         this.canvas.current.height = this.videoTag.current.videoHeight
 
         this.videoTag.current.style.display = 'none'
+        this.canvas.current.style.display = 'block'
 
         var context = this.canvas.current.getContext('2d');
 

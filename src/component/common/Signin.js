@@ -37,7 +37,8 @@ class Signin extends React.Component{
         this.submitInfo = this.submitInfo.bind(this);
     }
 
-    submitInfo(){
+    submitInfo(e){
+        e.preventDefault();
         let fd = new FormData(this.form.current);
         let data = {};
         for (let [id, pw] of fd) {
@@ -53,9 +54,6 @@ class Signin extends React.Component{
         .then(data => data.json())
         .then(data =>  { 
             this.props.setPermission(data['permission']);
-        }) 
-        .catch((err) => {
-            console.error(err);
         })
     }
 
@@ -63,9 +61,11 @@ class Signin extends React.Component{
         return(
             <form ref={this.form} style={formStyle}>
                 <h1 style={{color:"white"}}>Sign-in</h1>
-                <input style={inputStyle} name="id" placeholder="ID"/>
-                <input style={inputStyle} name="pw" placeholder="PW"/>
-                <input style={submitStyle} type="button" value="sign-in" onClick={this.submitInfo}/>
+                <input type="text" style={inputStyle} name="id" placeholder="ID"/>
+                <input type="password" style={inputStyle} name="pw" placeholder="PW"/>
+                <button style={submitStyle} onClick={e=>{this.submitInfo(e)}}>
+                    sign-in
+                </button>
                 <div style={this.props.style}>Please check your ID and PW</div>
             </form>
         )

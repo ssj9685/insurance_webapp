@@ -11,7 +11,7 @@ class Agree extends React.Component{
                     <summary style={{outline:'none',}}>개인(신용)정보의 수집 이용에 관한 사항</summary>
                     <iframe 
                         title="info"
-                        frameborder="0"
+                        frameBorder="0"
                         srcDoc="
                                 <div style='font-family:helvetica';>
                                 개인(신용)정보의 수집·이용 목적
@@ -60,7 +60,7 @@ class Agree extends React.Component{
                     <summary style={{outline:'none',}}>개인(신용)정보 조회에 관한 사항</summary>
                     <iframe 
                         title="info2" 
-                        frameborder="0"
+                        frameBorder="0"
                         srcDoc="
                                 <div style='font-family:helvetica'>
                                 개인(신용)정보 조회 목적
