@@ -6,6 +6,7 @@ const {
         SET_BANK,
         SET_ACCOUNT,
         SET_SIGN,
+        SET_PERMISSION,
         NEXT_PAGE,
         PREV_PAGE,
         AGREE_COLLECT,
@@ -29,6 +30,10 @@ const signState = {
 const agreeState = {
     collect:false,
     lookUp:false,
+}
+
+const permissionState = {
+    permission: null,
 }
 
 const bankReducer = (state=bankState, action) => {
@@ -105,11 +110,24 @@ const agreeReducer = (state=agreeState,action) => {
     }
 }
 
+const permissionReducer = (state=permissionState,action)=>{
+    switch(action.type){
+        case SET_PERMISSION:
+            return{
+                ...state,
+                permission:action.permission,
+            }
+        default:
+            return state
+    }
+}
+
 const reducers = combineReducers({
     bankReducer,
     pageReducer,
     signReducer,
     agreeReducer,
+    permissionReducer,
 })
 
 export default reducers;

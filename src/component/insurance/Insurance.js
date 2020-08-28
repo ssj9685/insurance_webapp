@@ -7,11 +7,11 @@ import './App.css';
 class Insurance extends React.Component{
   render(){
     return(
-      <form action="/" method="POST" className='App'>
+      <div className='App'>
         <Header/>
         <Main/>
         <Footer/>
-      </form>
+      </div>
     );
   }
 }

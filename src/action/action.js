@@ -5,6 +5,7 @@ const SET_NAME = 'SET_NAME';
 const NEXT_PAGE = 'NEXT_PAGE';
 const PREV_PAGE = 'PREVIOUS_PAGE';
 const SET_SIGN = 'SET_SIGN';
+const SET_PERMISSION = 'SET_PERMISSION';
 const AGREE_COLLECT = 'AGREE_COLLECT';
 const AGREE_LOOKUP = 'AGREE_LOOKUP';
 
@@ -23,6 +24,10 @@ const setName = name => {
 
 const setSign = sign => {
 	return { type: SET_SIGN, sign};
+}
+
+const setPermission = permission => {
+	return { type: SET_PERMISSION, permission};
 }
 
 const agreeCollect = agree => {
@@ -46,6 +51,7 @@ export  {
 	SET_ACCOUNT,
 	SET_BANK,
 	SET_SIGN,
+	SET_PERMISSION,
 	NEXT_PAGE,
 	PREV_PAGE,
 	AGREE_COLLECT,
@@ -54,6 +60,7 @@ export  {
 	setAccount,
 	setName,
 	setSign,
+	setPermission,
 	nextPage,
 	prevPage,
 	agreeCollect,

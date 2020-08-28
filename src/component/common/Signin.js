@@ -1,4 +1,6 @@
 import React from 'react';
+import { setPermission } from 'action/action';
+import {connect} from 'react-redux';
 
 const formStyle={
     height:"100%",
@@ -20,9 +22,12 @@ const inputStyle = {
 const submitStyle={
     height:"3em",
     width:"35%",
+    margin:"0.5em",
+    padding:"0.5em",
     color:"white",
     backgroundColor:"#003AB6",
-    border:"none"
+    border:"none",
+    outline:"none",
 }
 
 class Signin extends React.Component{
@@ -31,11 +36,12 @@ class Signin extends React.Component{
         this.form = React.createRef();
         this.submitInfo = this.submitInfo.bind(this);
     }
+
     submitInfo(){
         let fd = new FormData(this.form.current);
         let data = {};
-        for (let [key, prop] of fd) {
-          data[key] = prop;
+        for (let [id, pw] of fd) {
+          data[id] = pw;
         }
         fetch('http://localhost:9060/api', {
             method: 'POST',
@@ -44,22 +50,34 @@ class Signin extends React.Component{
             },
             body: JSON.stringify(data)
         })
-        .then(data => data.text())
-        .then(data =>  { console.log(data) }) 
+        .then(data => data.json())
+        .then(data =>  { 
+            this.props.setPermission(data['permission']);
+        }) 
         .catch((err) => {
             console.error(err);
         })
     }
+
     render(){
         return(
-            <form ref={this.form} action="" method="POST" style={formStyle}>
+            <form ref={this.form} style={formStyle}>
                 <h1 style={{color:"white"}}>Sign-in</h1>
                 <input style={inputStyle} name="id" placeholder="ID"/>
                 <input style={inputStyle} name="pw" placeholder="PW"/>
                 <input style={submitStyle} type="button" value="sign-in" onClick={this.submitInfo}/>
+                <div style={this.props.style}>Please check your ID and PW</div>
             </form>
         )
     }
 }
+
+let dispatchToProps = (dispatch) => {
+    return {
+        setPermission: permission => dispatch(setPermission(permission)),
+    }
+}
+
+Signin = connect(undefined, dispatchToProps)(Signin);
 
 export default Signin;

@@ -1,0 +1,25 @@
+details summary::-webkit-details-marker {
+    color: #255EE1;
+}
+
+summary::-webkit-details-marker {
+    display: none
+}
+  summary:after {
+    border-radius: 5px;
+    content: "+";
+    float: left;
+    margin: -6px 10px 0 0;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+details[open] summary:after {
+    content: "-";
+    float: left;
+    margin: -16px 5px 0 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}

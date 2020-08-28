@@ -29,14 +29,14 @@ class Camera extends React.Component{
 
             <canvas
                 ref={this.canvas}
-                width='640'
-                height='480'
             />
             </>
         )
     }
     handleClick(event){
         event.preventDefault();
+        this.canvas.current.width = this.videoTag.current.videoWidth
+        this.canvas.current.height = this.videoTag.current.videoHeight
 
         var context = this.canvas.current.getContext('2d');
 
