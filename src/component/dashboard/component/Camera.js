@@ -4,6 +4,7 @@ class Camera extends React.Component{
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this);
+        this.handleReset = this.handleReset.bind(this);
         this.videoTag = React.createRef()
         this.canvas = React.createRef()
     }
@@ -13,23 +14,23 @@ class Camera extends React.Component{
     }
     render(){
         return(
-            <>
+            <div style={{
+                display:'flex',
+                flexDirection:'column',
+                justifyContent:'center',
+                alignItems:'center',
+                }}>
             <div>처방전을 비춰주세요</div>
             <video ref={this.videoTag} autoPlay/>
-            <canvas ref={this.canvas}/>
-            <button
-                ref="button"
-                onClick={
-                    e => { this.handleClick(e);}
-                }
-            >
-                Capture
-            </button>
-            </>
+            <canvas ref={this.canvas} width="0" height="0"/>
+            <div>
+                <input type="button" value="Capture" onClick={this.handleClick}/>
+                <input type="button" value="reset" onClick={this.handleReset}/>
+            </div>
+            </div>
         )
     }
-    handleClick(event){
-        event.preventDefault();
+    handleClick(){
         this.canvas.current.width = this.videoTag.current.videoWidth
         this.canvas.current.height = this.videoTag.current.videoHeight
 
@@ -49,6 +50,12 @@ class Camera extends React.Component{
             //console.log(canvas.toDataURL())
         })
     };
+
+    handleReset(){
+        this.videoTag.current.style.display = 'block'
+        this.canvas.current.width = 0
+        this.canvas.current.height = 0
+    }
 }
 
 export default Camera;
