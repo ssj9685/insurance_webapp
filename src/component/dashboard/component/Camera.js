@@ -14,22 +14,17 @@ class Camera extends React.Component{
     render(){
         return(
             <>
+            <div>처방전을 비춰주세요</div>
             <video ref={this.videoTag} autoPlay/>
+            <canvas ref={this.canvas}/>
             <button
                 ref="button"
                 onClick={
-                    e => {
-                        let nativeEvent = e.nativeEvent;
-                        this.handleClick(nativeEvent);
-                    }
+                    e => { this.handleClick(e);}
                 }
             >
                 Capture
             </button>
-
-            <canvas
-                ref={this.canvas}
-            />
             </>
         )
     }
@@ -37,6 +32,8 @@ class Camera extends React.Component{
         event.preventDefault();
         this.canvas.current.width = this.videoTag.current.videoWidth
         this.canvas.current.height = this.videoTag.current.videoHeight
+
+        this.videoTag.current.style.display = 'none'
 
         var context = this.canvas.current.getContext('2d');
 
