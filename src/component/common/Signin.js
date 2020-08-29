@@ -44,7 +44,7 @@ class Signin extends React.Component{
         for (let [id, pw] of fd) {
           data[id] = pw;
         }
-        fetch('http://localhost:9060/api', {
+        fetch('http://192.168.0.2:9060/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

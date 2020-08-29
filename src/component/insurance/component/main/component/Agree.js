@@ -48,9 +48,10 @@ class Agree extends React.Component{
                         />
                 </details>
                 <div style={{textAlign:"right"}}>
-                    동의
+                    <label htmlFor='agree1'>동의</label>
                     <input
                         type="checkbox"
+                        id='agree1'
                         checked={this.props.collect}
                         onChange={e=>this.props.agreeCollect(e.target.checked)}
                     />
@@ -80,9 +81,10 @@ class Agree extends React.Component{
                 </details>
 
                 <div style={{textAlign:"right"}}>
-                    동의 
+                    <label htmlFor='agree2'>동의</label>
                     <input 
                         type="checkbox"
+                        id="agree2"
                         checked={this.props.lookUp}
                         onChange={e=>this.props.agreeLookUp(e.target.checked)}
                     />

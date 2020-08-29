@@ -15,16 +15,24 @@ class Sign extends React.Component{
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.draw = this.draw.bind(this);
     }
 
     componentDidMount(){
+        this.canvas.current.addEventListener('touchmove', this.handleTouchMove, { passive: false });
         var context = this.canvas.current.getContext("2d");
         var img = new Image();
         img.src = this.props.sign;
         img.onload = ()=>{
             context.drawImage(img,0,0);
         };
+    }
+
+    componentWillUnmount(){
+        this.canvas.current.removeEventListener('touchmove', this.handleTouchMove);
     }
     
 
@@ -65,6 +73,19 @@ class Sign extends React.Component{
                 e => {
                     let nativeEvent = e.nativeEvent;
                     this.handleMouseOut(nativeEvent);
+                }
+            }
+
+            onTouchStart={
+                e=>{
+                    let nativeEvent = e.nativeEvent;
+                    this.handleTouchStart(nativeEvent);
+                }
+            }
+            onTouchEnd={
+                e=>{
+                    let nativeEvent = e.nativeEvent;
+                    this.handleTouchEnd(nativeEvent);
                 }
             }
             />
@@ -118,6 +139,38 @@ class Sign extends React.Component{
         context.clearRect(0, 0, this.canvas.current.width, this.canvas.current.height);
         this.props.setSign('none');
         context.beginPath();
+    }
+
+    handleTouchStart(event){
+        console.log('start');
+        event.preventDefault(); 
+        var offsetX = Math.round(event.targetTouches[0].pageX-this.canvas.current.getBoundingClientRect().left)
+        var offsetY = Math.round(event.targetTouches[0].pageY-this.canvas.current.getBoundingClientRect().top)
+        this.setState({
+            startX: offsetX,
+            startY: offsetY,
+            isDown: true
+        });
+    }
+    handleTouchMove(event){
+        console.log('move');
+        event.preventDefault();
+        var offsetX = Math.round(event.targetTouches[0].pageX-this.canvas.current.getBoundingClientRect().left)
+        var offsetY = Math.round(event.targetTouches[0].pageY-this.canvas.current.getBoundingClientRect().top)
+        if(!this.state.isDown) return;
+        this.draw(offsetX, offsetY);
+        this.setState({
+            startX:offsetX,
+            startY:offsetY,
+        });
+    }
+
+    handleTouchEnd(event){
+        console.log('end');
+        this.props.setSign(this.canvas.current.toDataURL());
+        this.setState({
+            isDown: false
+        })
     }
 }
 
