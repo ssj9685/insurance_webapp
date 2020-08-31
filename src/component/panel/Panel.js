@@ -1,5 +1,6 @@
 import React from 'react';
 import Signin from 'component/common/Signin'
+import Camera from './component/Camera'
 import {connect} from 'react-redux';
 
 const defaultStyle = {
@@ -11,12 +12,12 @@ const failStyle = {
     color: 'red',
 }
 
-class Panel extends React.Component{
+class Dashboard extends React.Component{
     render(){
         switch(this.props.permission){
             case true:
                 return(
-                    <>hi</>
+                    <Camera/>
                 )
             case false:
                 return(
@@ -37,6 +38,6 @@ let stateToProps = (state) => {
     };
 }
 
-Panel = connect(stateToProps)(Panel);
+Dashboard = connect(stateToProps)(Dashboard);
 
-export default Panel;
+export default Dashboard;
