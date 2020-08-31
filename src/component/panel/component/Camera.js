@@ -1,5 +1,16 @@
 import React from 'react';
 
+const buttonStyle={
+    height:"3em",
+    width:"8em",
+    margin:"0.5em",
+    padding:"0.5em",
+    color:"white",
+    backgroundColor:"#003AB6",
+    border:"none",
+    outline:"none",
+}
+
 class Camera extends React.Component{
     constructor(props){
         super(props)
@@ -23,16 +34,27 @@ class Camera extends React.Component{
                 height:'100%',
                 display:'flex',
                 flexDirection:'column',
-                justifyContent:'center',
+                justifyContent:'space-around',
                 alignItems:'center',
                 }}>
-            <div>처방전을 비춰주세요</div>
-            <video ref={this.videoTag} autoPlay/>
-            <canvas style={{display:'none'}} ref={this.canvas} width="0" height="0"/>
-            <div>
-                <input type="button" value="Capture" onClick={this.handleClick}/>
-                <input type="button" value="reset" onClick={this.handleReset}/>
-            </div>
+                <div style={{flex:'1',textAlign:'center',color:'#255EE1',font:'normal bold 2em helvetica',display:'flex',alignItems:'center'}}>처방전을 비춰주세요</div>
+
+                <div style={{flex:'3',}}>
+                    <video ref={this.videoTag} autoPlay/>
+                    <canvas style={{display:'none'}} ref={this.canvas} width="0" height="0"/>
+                </div>
+
+                <div style={{
+                    flex:'2',
+                    width:'50%',
+                    display:'flex',
+                    justifyContent:'space-between',
+                    alignItems:'center',
+                    }}>
+                    <input style={buttonStyle} type="button" value="CAPTURE" onClick={this.handleClick}/>
+                    <input style={buttonStyle} type="button" value="RESET" onClick={this.handleReset}/>
+                    <input style={buttonStyle} type="button" value="NEXT" onClick={this.handleReset}/>
+                </div>
             </div>
         )
     }
